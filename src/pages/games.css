@@ -1,0 +1,10 @@
+/* ═══ GAMES HUB page ═══ */
+
+.games-body {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.games-body .games-grid {
+  margin-bottom: 2rem;
+}

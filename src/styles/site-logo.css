@@ -1,0 +1,137 @@
+/* ═══ Site logo — official brand mark ═══ */
+
+.site-logo-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  flex-shrink: 0;
+}
+
+.site-logo {
+  display: block;
+  width: auto;
+  object-fit: contain;
+  user-select: none;
+  transition: transform var(--t);
+}
+
+/* Header */
+.logo:hover .site-logo {
+  transform: scale(1.02);
+}
+
+.site-logo-wrap--header {
+  height: 64px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.site-logo-wrap--header .site-logo {
+  height: 64px;
+  max-width: 230px;
+  width: auto;
+  object-fit: contain;
+  object-position: right center;
+}
+
+/* Hero feature — جانب الواجهة الرئيسية */
+.home-hero-logo-title {
+  margin: 0;
+  line-height: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.site-logo-wrap--hero-feature .site-logo {
+  height: clamp(340px, 50vw, 640px);
+  max-width: min(680px, 100%);
+  width: auto;
+}
+
+@media (max-width: 960px) {
+  .site-logo-wrap--hero-feature .site-logo {
+    height: clamp(250px, 54vw, 420px);
+    max-width: min(520px, 94vw);
+  }
+}
+
+@media (max-width: 480px) {
+  .site-logo-wrap--hero-feature .site-logo {
+    height: clamp(200px, 60vw, 320px);
+  }
+}
+
+/* Play header */
+.sj-logo.site-logo-link {
+  text-decoration: none;
+  margin-right: 0.25rem;
+  line-height: 0;
+}
+
+.sj-logo.site-logo-link:hover .site-logo {
+  transform: scale(1.04);
+}
+
+.site-logo-wrap--play {
+  height: 52px;
+  max-width: 182px;
+  overflow: hidden;
+}
+
+.site-logo-wrap--play .site-logo {
+  height: 52px;
+  max-width: 178px;
+  width: auto;
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* Footer */
+.app-footer-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  vertical-align: middle;
+}
+
+.site-logo-wrap--footer .site-logo {
+  height: 30px;
+  max-width: 108px;
+  vertical-align: middle;
+}
+
+@media (max-width: 720px) {
+  .site-logo-wrap--header {
+    height: 54px;
+  }
+
+  .site-logo-wrap--header .site-logo {
+    height: 54px;
+    max-width: 195px;
+  }
+
+  .site-logo-wrap--play {
+    height: 44px;
+    max-width: 154px;
+  }
+
+  .site-logo-wrap--play .site-logo {
+    height: 44px;
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-logo-wrap--header {
+    height: 50px;
+  }
+
+  .site-logo-wrap--header .site-logo {
+    height: 50px;
+    max-width: 180px;
+  }
+}
