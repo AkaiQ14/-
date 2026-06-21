@@ -3,7 +3,6 @@ import futggPool from './futggPlayers.json'
 
 export const STARTING_BUDGET = 250
 export const BUDGET_PRESETS = [150, 200, 250, 300, 400]
-export const ROUND_TIMER_SEC = 20
 
 export const COLOR_OPTIONS = [
   { id: 'blue', label: 'أزرق لعبتنا', hex: '#2B6BFF' },

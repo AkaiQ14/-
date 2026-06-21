@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { ROUND_TIMER_SEC } from '../../data/auctionPlayers'
 import { minAllowedBid } from '../../lib/auctionUtils'
 import type { BidRecord, PlayerId } from '../../types/hiddenPlayer'
 
@@ -7,7 +6,6 @@ interface BidPanelProps {
   activeBidder: PlayerId
   currentBid: number
   highBidder: PlayerId | null
-  timerSec: number
   p1Budget: number
   p2Budget: number
   p1Name: string
@@ -21,7 +19,6 @@ export default function BidPanel({
   activeBidder,
   currentBid,
   highBidder,
-  timerSec,
   p1Budget,
   p2Budget,
   p1Name,
@@ -33,7 +30,6 @@ export default function BidPanel({
   const [customBid, setCustomBid] = useState('')
   const [error, setError] = useState('')
   const minBid = minAllowedBid(currentBid)
-  const timerPct = Math.max(0, (timerSec / ROUND_TIMER_SEC) * 100)
   const activeBudget = activeBidder === 'p1' ? p1Budget : p2Budget
   const activeName = activeBidder === 'p1' ? p1Name : p2Name
   const waitingId: PlayerId = activeBidder === 'p1' ? 'p2' : 'p1'
@@ -67,17 +63,6 @@ export default function BidPanel({
 
   return (
     <div className="hp-bid-panel">
-      <div
-        className="hp-timer hp-timer--solo"
-        role="progressbar"
-        aria-valuenow={timerSec}
-        aria-valuemin={0}
-        aria-valuemax={ROUND_TIMER_SEC}
-        aria-label="الوقت المتبقي"
-      >
-        <div className="hp-timer-bar" style={{ width: `${timerPct}%` }} />
-      </div>
-
       <div className="hp-bid-head__amount">
         <span className="hp-bid-label">المزايدة الحالية</span>
         <strong>{highBidder ? `${currentBid}M` : '0M'}</strong>

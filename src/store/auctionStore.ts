@@ -1,7 +1,6 @@
 import { create } from 'zustand'
 import {
   pickAuctionRounds,
-  ROUND_TIMER_SEC,
   SQUAD_TEMPLATE,
   STARTING_BUDGET,
 } from '../data/auctionPlayers'
@@ -48,7 +47,6 @@ function createLobbyState(draft: LobbyDraft): AuctionGameState {
     openingBid: 0,
     highBidder: null,
     activeBidder: 'p1',
-    timerSec: ROUND_TIMER_SEC,
     bidHistory: [],
     squad1: emptySquad(),
     squad2: emptySquad(),
@@ -64,7 +62,6 @@ interface AuctionStore {
   placeBid: (playerId: PlayerId, amount: number) => { ok: boolean; message?: string }
   raiseBid: (playerId: PlayerId) => { ok: boolean; message?: string }
   passBid: (playerId: PlayerId) => void
-  tickTimer: () => void
   dismissReveal: () => void
   resetGame: () => void
 }
@@ -140,7 +137,6 @@ function resolveRound(game: AuctionGameState): AuctionGameState {
     openingBid: 0,
     highBidder: null,
     activeBidder: loser,
-    timerSec: ROUND_TIMER_SEC,
     bidHistory: [],
   }
 }
@@ -181,7 +177,6 @@ export const useAuctionStore = create<AuctionStore>()((set, get) => ({
         currentBid: amount,
         highBidder: playerId,
         activeBidder: otherPlayer(playerId),
-        timerSec: ROUND_TIMER_SEC,
         bidHistory: [
           ...game.bidHistory,
           { round: game.currentRound, playerId, amount, action: 'bid' },
@@ -231,7 +226,6 @@ export const useAuctionStore = create<AuctionStore>()((set, get) => ({
         game: {
           ...game,
           activeBidder: otherPlayer(playerId),
-          timerSec: ROUND_TIMER_SEC,
           bidHistory: history,
         },
       })
@@ -239,29 +233,6 @@ export const useAuctionStore = create<AuctionStore>()((set, get) => ({
     }
 
     finishResolved(resolveRound({ ...game, bidHistory: history }), set)
-  },
-
-  tickTimer: () => {
-    const { game } = get()
-    if (!game || game.phase !== 'auction') return
-
-    if (game.timerSec <= 1) {
-      const budget = game.activeBidder === 'p1' ? game.p1.budget : game.p2.budget
-      if (game.highBidder !== null || budget === 0) {
-        get().passBid(game.activeBidder)
-      } else {
-        set({
-          game: {
-            ...game,
-            activeBidder: otherPlayer(game.activeBidder),
-            timerSec: ROUND_TIMER_SEC,
-          },
-        })
-      }
-      return
-    }
-
-    set({ game: { ...game, timerSec: game.timerSec - 1 } })
   },
 
   dismissReveal: () => {

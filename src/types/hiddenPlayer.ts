@@ -77,7 +77,6 @@ export interface AuctionGameState {
   openingBid: number
   highBidder: PlayerId | null
   activeBidder: PlayerId
-  timerSec: number
   bidHistory: BidRecord[]
   squad1: SquadSlot[]
   squad2: SquadSlot[]

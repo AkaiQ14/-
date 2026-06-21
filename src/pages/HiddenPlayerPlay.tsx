@@ -10,19 +10,13 @@ import { useAuctionStore } from '../store/auctionStore'
 export default function HiddenPlayerPlay() {
   const navigate = useNavigate()
   const game = useAuctionStore(s => s.game)
-  const { passBid, placeBid, tickTimer, dismissReveal, resetGame } = useAuctionStore()
+  const { passBid, placeBid, dismissReveal, resetGame } = useAuctionStore()
 
   useEffect(() => {
     if (!game) {
       navigate('/games/hidden-player/lobby', { replace: true })
     }
   }, [game, navigate])
-
-  useEffect(() => {
-    if (!game || game.phase !== 'auction') return
-    const id = window.setInterval(() => tickTimer(), 1000)
-    return () => window.clearInterval(id)
-  }, [game?.phase, game?.currentRound, tickTimer])
 
   if (!game) return null
 
@@ -71,7 +65,6 @@ export default function HiddenPlayerPlay() {
                 activeBidder={game.activeBidder}
                 currentBid={game.currentBid}
                 highBidder={game.highBidder}
-                timerSec={game.timerSec}
                 p1Budget={game.p1.budget}
                 p2Budget={game.p2.budget}
                 p1Name={game.p1.name}

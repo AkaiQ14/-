@@ -608,7 +608,6 @@
 
 /* ── Bid panel (compact) ── */
 .hp-bid-panel {
-  position: relative;
   background: var(--bg-white);
   border: var(--brutal-border);
   border-radius: var(--r-md);
@@ -648,30 +647,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.hp-timer {
-  position: relative;
-  height: 4px;
-  background: var(--bg-cream-dark);
-  border: 1px solid var(--ink);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.hp-timer--solo {
-  position: absolute;
-  top: 0.4rem;
-  left: 0.4rem;
-  width: 2.25rem;
-  margin: 0;
-  z-index: 1;
-}
-
-.hp-timer-bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--blue-primary), var(--orange-primary));
-  transition: width 1s linear;
 }
 
 .hp-bid-error {
