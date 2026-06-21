@@ -16,7 +16,7 @@ const READINESS = [
 export default function Setup() {
   const navigate = useNavigate()
   const {
-    draft, updateDraft, toggleCategory,
+    draft, updateDraft, resetDraft, toggleCategory,
     pickRandomCategoriesForBoth, canStartGame, startGame,
   } = useGameStore()
 
@@ -25,8 +25,9 @@ export default function Setup() {
   const [splitResult, setSplitResult] = useState<{ t1: number; t2: number } | null>(null)
 
   useEffect(() => {
+    resetDraft()
     updateDraft({ gameModeId: 'laabtna' })
-  }, [])
+  }, [resetDraft, updateDraft])
 
   const handleStart = () => {
     const id = startGame()

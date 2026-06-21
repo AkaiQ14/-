@@ -392,7 +392,13 @@ export const useGameStore = create<GameStore>()(
         })
       },
     }),
-    { name: STORAGE_KEY }
+    {
+      name: STORAGE_KEY,
+      partialize: (state) => ({
+        savedGames: state.savedGames,
+        activeGameId: state.activeGameId,
+      }),
+    },
   )
 )
 
