@@ -16,7 +16,7 @@ export const GAME_MODES: GameMode[] = [
     id: 'hidden-player',
     name: 'اللاعب الخفي',
     sectionLabel: 'مزاد كرة قدم',
-    description: 'مزاد حماسي بين لاعبين — ابنِ فريقك من 5 مراكز والفائز يحصل على اللاعب الظاهر والخاسر على البديل المخفي',
+    description: 'ابنِ فريقك الاقوى من 5 لاعبين عبر مزاد حماسي',
     icon: '🎭',
     available: true,
     setupPath: '/games/hidden-player',

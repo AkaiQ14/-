@@ -28,6 +28,11 @@
   border-bottom-color: var(--blue-primary);
 }
 
+.hp-back-link--below-lead {
+  margin-top: 0.85rem;
+  margin-bottom: 0;
+}
+
 /* ── Hub features ── */
 .hp-features {
   display: grid;

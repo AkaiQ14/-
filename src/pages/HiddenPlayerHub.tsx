@@ -8,16 +8,14 @@ export default function HiddenPlayerHub() {
       <section className="page-hero page-hero--compact site-section site-section--hero">
         <FloatingOrbs />
         <div className="page-hero-inner page-hero-inner--center anim-fade-up">
-          <Link to="/games" className="hp-back-link">← العودة للألعاب</Link>
           <span className="page-tag">⚽ مزاد اللاعبين</span>
           <h1 className="page-title">
             <span className="text-gradient">اللاعب الخفي</span>
           </h1>
           <p className="page-lead">
-            ابنِ فريقك من 5 بطاقات EA FC 26 عبر مزاد حماسي — الفائز يحصل على البطاقة الظاهرة،
-            والخاسر يحصل على البديل المخفي تلقائياً! البطاقات من{' '}
-            <a href="https://www.fut.gg/" target="_blank" rel="noopener noreferrer">FUT.GG</a>.
+            ابنِ فريقك الاقوى من 5 لاعبين عبر مزاد حماسي
           </p>
+          <Link to="/games" className="hp-back-link hp-back-link--below-lead">← العودة للألعاب</Link>
         </div>
       </section>
 
