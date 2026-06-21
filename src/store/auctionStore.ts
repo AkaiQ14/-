@@ -145,6 +145,17 @@ function resolveRound(game: AuctionGameState): AuctionGameState {
   }
 }
 
+function finishResolved(resolved: AuctionGameState, set: (v: { game: AuctionGameState }) => void) {
+  if (resolved.currentRound >= resolved.rounds.length && resolved.reveal) {
+    const s1 = calcTeamStats(resolved.squad1)
+    const s2 = calcTeamStats(resolved.squad2)
+    const winner: PlayerId = (s1?.power ?? 0) >= (s2?.power ?? 0) ? 'p1' : 'p2'
+    set({ game: { ...resolved, predictedWinner: winner } })
+  } else {
+    set({ game: resolved })
+  }
+}
+
 export const useAuctionStore = create<AuctionStore>()((set, get) => ({
   game: null,
 
@@ -191,37 +202,43 @@ export const useAuctionStore = create<AuctionStore>()((set, get) => ({
     if (!game || game.phase !== 'auction') return
     if (playerId !== game.activeBidder) return
 
+    const budget = playerId === 'p1' ? game.p1.budget : game.p2.budget
+    const passEntry = {
+      round: game.currentRound,
+      playerId,
+      amount: game.highBidder ? game.currentBid : 0,
+      action: 'pass' as const,
+    }
+    const history = [...game.bidHistory, passEntry]
+
+    // رصيد صفر: اللاعب يذهب للخصم مباشرة
+    if (budget === 0) {
+      const opponent = otherPlayer(playerId)
+      finishResolved(
+        resolveRound({
+          ...game,
+          highBidder: opponent,
+          currentBid: game.highBidder === opponent ? game.currentBid : 0,
+          bidHistory: history,
+        }),
+        set,
+      )
+      return
+    }
+
     if (game.highBidder === null) {
       set({
         game: {
           ...game,
           activeBidder: otherPlayer(playerId),
           timerSec: ROUND_TIMER_SEC,
-          bidHistory: [
-            ...game.bidHistory,
-            { round: game.currentRound, playerId, amount: 0, action: 'pass' },
-          ],
+          bidHistory: history,
         },
       })
       return
     }
 
-    const resolved = resolveRound({
-      ...game,
-      bidHistory: [
-        ...game.bidHistory,
-        { round: game.currentRound, playerId, amount: game.currentBid, action: 'pass' },
-      ],
-    })
-
-    if (resolved.currentRound >= resolved.rounds.length && resolved.reveal) {
-      const s1 = calcTeamStats(resolved.squad1)
-      const s2 = calcTeamStats(resolved.squad2)
-      const winner: PlayerId = (s1?.power ?? 0) >= (s2?.power ?? 0) ? 'p1' : 'p2'
-      set({ game: { ...resolved, predictedWinner: winner } })
-    } else {
-      set({ game: resolved })
-    }
+    finishResolved(resolveRound({ ...game, bidHistory: history }), set)
   },
 
   tickTimer: () => {
@@ -229,7 +246,8 @@ export const useAuctionStore = create<AuctionStore>()((set, get) => ({
     if (!game || game.phase !== 'auction') return
 
     if (game.timerSec <= 1) {
-      if (game.highBidder !== null) {
+      const budget = game.activeBidder === 'p1' ? game.p1.budget : game.p2.budget
+      if (game.highBidder !== null || budget === 0) {
         get().passBid(game.activeBidder)
       } else {
         set({

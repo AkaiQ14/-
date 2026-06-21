@@ -3,7 +3,7 @@ import futggPool from './futggPlayers.json'
 
 export const STARTING_BUDGET = 250
 export const BUDGET_PRESETS = [150, 200, 250, 300, 400]
-export const ROUND_TIMER_SEC = 10
+export const ROUND_TIMER_SEC = 20
 
 export const COLOR_OPTIONS = [
   { id: 'blue', label: 'أزرق لعبتنا', hex: '#2B6BFF' },
@@ -34,6 +34,8 @@ const ROUND_DEFS: { roundLabel: string; position: Position; slotKey: string }[] 
 
 const RECENT_STORAGE_KEY = 'hidden-player-recent-card-ids'
 const MAX_RECENT_IDS = 120
+const HIGH_OVR_THRESHOLD = 90
+const HIGH_OVR_PICK_CHANCE = 0.2
 
 function shuffle<T>(arr: T[]): T[] {
   const copy = [...arr]
@@ -91,6 +93,24 @@ function rankCandidates(
   return [...fresh, ...stale]
 }
 
+function isEliteCard(p: Footballer): boolean {
+  return p.overall > HIGH_OVR_THRESHOLD
+}
+
+/** يختار من القائمة: ~20% من طبقة +90، ~80% من باقي البطاقات */
+function pickWeighted(candidates: Footballer[]): Footballer | null {
+  if (!candidates.length) return null
+
+  const elite = shuffle(candidates.filter(isEliteCard))
+  const standard = shuffle(candidates.filter(p => !isEliteCard(p)))
+  const preferElite = Math.random() < HIGH_OVR_PICK_CHANCE
+
+  if (preferElite && elite.length > 0) return elite[0]
+  if (standard.length > 0) return standard[0]
+  if (elite.length > 0) return elite[0]
+  return null
+}
+
 function pickOne(
   group: Position,
   usedIds: Set<string>,
@@ -104,11 +124,12 @@ function pickOne(
     [true, true],
   ] as const) {
     const ranked = rankCandidates(group, usedIds, usedNames, recentIds, ignoreNames, ignoreRecent)
-    if (ranked.length > 0) return clonePlayer(ranked[0])
+    const picked = pickWeighted(ranked)
+    if (picked) return clonePlayer(picked)
   }
-  const fallback = shuffle([...POOL[group]])
-  if (fallback.length === 0) throw new Error(`لا توجد بطاقات كافية لمركز ${group}`)
-  return clonePlayer(fallback[0])
+  const fallback = pickWeighted(shuffle([...POOL[group]]))
+  if (!fallback) throw new Error(`لا توجد بطاقات كافية لمركز ${group}`)
+  return clonePlayer(fallback)
 }
 
 function pickPair(
