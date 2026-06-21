@@ -52,7 +52,7 @@
   background: var(--bg-white);
   border: 2px solid var(--ink);
   color: var(--text-dark);
-  font-weight: 900;
+  font-weight: var(--fw-bold);
   font-size: 0.85rem;
   padding: 0.4rem 1rem;
   border-radius: var(--r-sm);
@@ -63,7 +63,7 @@
 
 .home-hero-title {
   font-size: clamp(2rem, 5.5vw, 3.25rem);
-  font-weight: 900;
+  font-weight: var(--fw-bold);
   color: var(--text-dark);
   line-height: 1.15;
   margin-bottom: 1rem;
@@ -134,7 +134,7 @@
   color: #fff;
   border-radius: var(--r-sm);
   font-size: 0.7rem;
-  font-weight: 900;
+  font-weight: var(--fw-bold);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -147,7 +147,7 @@
 
 .home-step-text {
   font-size: 0.82rem;
-  font-weight: 800;
+  font-weight: var(--fw-semibold);
   color: var(--text-dark);
   white-space: nowrap;
 }
@@ -264,7 +264,7 @@
 }
 
 .home-feature-card h3 {
-  font-weight: 900;
+  font-weight: var(--fw-bold);
   color: var(--text-dark);
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
@@ -295,7 +295,7 @@
 .home-tab {
   padding: 0.55rem 1.35rem;
   border-radius: var(--r-sm);
-  font-weight: 800;
+  font-weight: var(--fw-semibold);
   font-size: 0.9rem;
   background: var(--bg-white);
   color: var(--text-dark);
@@ -314,7 +314,7 @@
   background: var(--gradient-blue);
   color: #fff;
   border-color: var(--ink);
-  font-weight: 900;
+  font-weight: var(--fw-bold);
 }
 
 .home-lifelines-grid {
@@ -369,7 +369,7 @@
 
 .home-lifeline-badge {
   font-size: 0.7rem;
-  font-weight: 900;
+  font-weight: var(--fw-bold);
   padding: 0.2rem 0.65rem;
   border-radius: var(--r-sm);
   border: 2px solid var(--ink);
@@ -387,7 +387,7 @@
 }
 
 .home-lifeline-card h4 {
-  font-weight: 900;
+  font-weight: var(--fw-bold);
   color: var(--text-dark);
   font-size: 1.05rem;
   margin-bottom: 0.4rem;

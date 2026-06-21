@@ -6,8 +6,9 @@ import { useGameStore } from '../store/gameStore'
 export default function Layout({ children }: { children: ReactNode }) {
   const location = useLocation()
   const isPlay = location.pathname === '/play'
+  const isHiddenPlay = location.pathname === '/games/hidden-player/play'
   const game = useGameStore(s => s.getActiveGame())
-  const immersivePlay = isPlay && game && game.status !== 'finished'
+  const immersivePlay = (isPlay && game && game.status !== 'finished') || isHiddenPlay
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {

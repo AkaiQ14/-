@@ -1,4 +1,4 @@
-export type GameModeId = 'laabtna' | 'letter-cell'
+export type GameModeId = 'laabtna' | 'letter-cell' | 'hidden-player'
 
 export interface GameMode {
   id: GameModeId

@@ -13,6 +13,16 @@ export const GAME_MODES: GameMode[] = [
     highlights: ['٦ فئات • ٣٦ سؤال', 'فريقان', '٣ وسائل مساعدة'],
   },
   {
+    id: 'hidden-player',
+    name: 'اللاعب الخفي',
+    sectionLabel: 'مزاد كرة قدم',
+    description: 'مزاد حماسي بين لاعبين — ابنِ فريقك من 5 مراكز والفائز يحصل على اللاعب الظاهر والخاسر على البديل المخفي',
+    icon: '🎭',
+    available: true,
+    setupPath: '/games/hidden-player',
+    highlights: ['5 جولات مزاد', 'لاعب خفي', 'تحليل الفريق'],
+  },
+  {
     id: 'letter-cell',
     name: 'خلية الحروف',
     sectionLabel: 'لعبة حروف',

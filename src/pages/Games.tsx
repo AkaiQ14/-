@@ -34,7 +34,7 @@ export default function Games() {
         <ScrollReveal delay={160}>
           <div className="games-note">
             <p>
-              المنصة تضم أكثر من لعبة — <strong>لعبتنا</strong> متاحة الآن بفئاتها الكاملة،
+              المنصة تضم أكثر من لعبة — <strong>لعبتنا</strong> و<strong>اللاعب الخفي</strong> متاحتان الآن،
               و<strong>خلية الحروف</strong> قيد التطوير.
             </p>
           </div>

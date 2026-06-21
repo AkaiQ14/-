@@ -33,7 +33,7 @@
   background: var(--bg-white);
   border: 2px solid var(--ink);
   color: var(--text-dark);
-  font-weight: 900;
+  font-weight: var(--fw-bold);
   font-size: 0.85rem;
   padding: 0.4rem 1rem;
   border-radius: var(--r-sm);
@@ -44,7 +44,7 @@
 
 .page-title {
   font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 900;
+  font-weight: var(--fw-bold);
   color: var(--text-dark);
   line-height: 1.15;
   margin-bottom: 0.65rem;
@@ -117,7 +117,7 @@
 .page-stat-value,
 .home-stat-value {
   font-size: 1.75rem;
-  font-weight: 900;
+  font-weight: var(--fw-bold);
   color: var(--accent-primary);
   line-height: 1;
   margin-bottom: 0.2rem;
@@ -188,7 +188,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 900;
+  font-weight: var(--fw-bold);
   font-size: 1.15rem;
   flex-shrink: 0;
   border: 2px solid var(--ink);
@@ -196,7 +196,7 @@
 }
 
 .page-section-info h2 {
-  font-weight: 900;
+  font-weight: var(--fw-bold);
   color: var(--text-dark);
   font-size: 1.2rem;
   margin-bottom: 0.25rem;
@@ -221,7 +221,7 @@
 .home-tab {
   padding: 0.55rem 1.35rem;
   border-radius: var(--r-sm);
-  font-weight: 800;
+  font-weight: var(--fw-semibold);
   font-size: 0.9rem;
   background: var(--bg-white);
   color: var(--text-dark);
@@ -242,7 +242,7 @@
   background: var(--gradient-blue);
   color: #fff;
   border-color: var(--ink);
-  font-weight: 900;
+  font-weight: var(--fw-bold);
 }
 
 .page-step-track {
@@ -298,7 +298,7 @@
   background: var(--bg-cream-light);
   color: var(--text-muted);
   font-size: 0.75rem;
-  font-weight: 900;
+  font-weight: var(--fw-bold);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -373,7 +373,7 @@
 .page-cta-footer h2,
 .home-cta-content h2 {
   font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 900;
+  font-weight: var(--fw-bold);
   color: #fff;
   margin-bottom: 0.65rem;
   position: relative;
@@ -414,7 +414,7 @@
 }
 
 .page-empty h3 {
-  font-weight: 900;
+  font-weight: var(--fw-bold);
   color: var(--text-dark);
   font-size: 1.35rem;
   margin-bottom: 0.5rem;

@@ -90,7 +90,7 @@
   border: 2px solid var(--ink);
   border-radius: var(--r-sm);
   font-size: 0.72rem;
-  font-weight: 900;
+  font-weight: var(--fw-bold);
   box-shadow: 2px 2px 0 var(--ink);
   white-space: nowrap;
 }
@@ -103,14 +103,14 @@
 .game-mode-section {
   display: inline-block;
   font-size: 0.75rem;
-  font-weight: 800;
+  font-weight: var(--fw-semibold);
   color: var(--blue-primary);
   margin-bottom: 0.35rem;
 }
 
 .game-mode-name {
   font-size: 1.45rem;
-  font-weight: 900;
+  font-weight: var(--fw-bold);
   color: var(--text-dark);
   margin-bottom: 0.55rem;
   line-height: 1.2;
@@ -134,7 +134,7 @@
 
 .game-mode-highlights li {
   font-size: 0.72rem;
-  font-weight: 800;
+  font-weight: var(--fw-semibold);
   padding: 0.2rem 0.55rem;
   background: var(--blue-soft);
   color: var(--blue-dark);

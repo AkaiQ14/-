@@ -23,7 +23,7 @@ button.btn {
   padding: 0  var(--btn-pad-x);
   border-radius: var(--r-sm);
   font-family: var(--font);
-  font-weight: 900;
+  font-weight: var(--fw-semibold, 600);
   font-size: 0.95rem;
   line-height: 1.2;
   text-decoration: none;
@@ -246,7 +246,7 @@ button.btn:disabled {
   color: #fff;
   border-color: var(--ink);
   box-shadow: 2px 2px 0 var(--ink);
-  font-weight: 900;
+  font-weight: var(--fw-semibold, 600);
 }
 
 .btn-segment .btn-segment-item.active-t2 {
@@ -254,7 +254,7 @@ button.btn:disabled {
   color: #fff;
   border-color: var(--ink);
   box-shadow: 2px 2px 0 var(--ink);
-  font-weight: 900;
+  font-weight: var(--fw-semibold, 600);
 }
 
 /* ── Page chrome ── */
@@ -352,7 +352,7 @@ button.btn:disabled {
   color: var(--blue-dark);
   border-color: var(--blue-primary);
   box-shadow: 2px 2px 0 var(--ink);
-  font-weight: 900;
+  font-weight: var(--fw-semibold, 600);
 }
 
 .btn-nav {
