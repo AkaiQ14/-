@@ -144,10 +144,11 @@ export default function Setup() {
               {CATEGORIES.map(cat => {
                 const state = getCategoryState(cat.id)
                 const disabled = isCategoryDisabled(cat.id)
+                const isSelected = state === activeTeam
                 return (
                   <div
                     key={cat.id}
-                    className={`setup-cat-card ${state === 'team1' ? 'selected-t1' : ''} ${state === 'team2' ? 'selected-t2' : ''} ${disabled ? 'disabled' : ''}`}
+                    className={`setup-cat-card ${isSelected && state === 'team1' ? 'selected-t1' : ''} ${isSelected && state === 'team2' ? 'selected-t2' : ''} ${disabled ? 'disabled' : ''}`}
                     style={{ '--cat-color': cat.color } as CSSProperties}
                     onClick={() => {
                       if (disabled) return
@@ -155,6 +156,11 @@ export default function Setup() {
                       else toggleCategory(activeTeam, cat.id)
                     }}
                   >
+                    {isSelected && (
+                      <span className={`setup-cat-check setup-cat-check--${state}`} aria-hidden>
+                        ✓
+                      </span>
+                    )}
                     <h3 className="setup-cat-title">{cat.name}</h3>
                     <div className="setup-cat-visual">
                       <img src={cat.image} alt="" className="setup-cat-img" />
