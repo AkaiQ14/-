@@ -44,29 +44,6 @@ export default function HiddenPlayerHub() {
           </ScrollReveal>
         </div>
 
-        <div className="hp-modes">
-          <Link to="/games/hidden-player/lobby?mode=casual" className="hp-mode-card">
-            <span>🎮</span>
-            <div>
-              <strong>وضع عادي</strong>
-              <small>لعب محلي لفريقين</small>
-            </div>
-          </Link>
-          <div className="hp-mode-card hp-mode-card--soon" aria-disabled>
-            <span>🏅</span>
-            <div>
-              <strong>وضع ترتيبي</strong>
-              <small>قريباً</small>
-            </div>
-          </div>
-        </div>
-
-        <div className="hp-chips">
-          <span className="hp-chip">🃏 بطاقات EA FC 26 من FUT.GG</span>
-          <span className="hp-chip">🎲 اختيار عشوائي كل مزاد</span>
-          <span className="hp-chip">🏆 لوحة المتصدرين — قريباً</span>
-        </div>
-
         <div className="hp-cta-wrap">
           <Link to="/games/hidden-player/lobby" className="btn btn-primary btn-lg btn-shimmer">
             ▶ ابدأ المزاد

@@ -17,7 +17,20 @@ export default function Layout({ children }: { children: ReactNode }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    if (location.pathname.startsWith('/games/hidden-player')) {
+      window.scrollTo(0, 0)
+    }
+  }, [location.pathname])
+
   if (immersivePlay) {
+    if (isHiddenPlay) {
+      return (
+        <div key={location.pathname} className="page-enter">
+          {children}
+        </div>
+      )
+    }
     return <>{children}</>
   }
 
