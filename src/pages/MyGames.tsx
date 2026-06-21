@@ -74,22 +74,6 @@ export default function MyGames() {
         </div>
       </section>
 
-      <section className="page-stats-bar page-chrome">
-        <div className="page-stats-inner">
-          {[
-            { v: String(savedGames.length), l: 'إجمالي الألعاب' },
-            { v: String(activeCount), l: 'جارية' },
-            { v: String(finishedCount), l: 'منتهية' },
-          ].map((s, i) => (
-            <div key={s.l} className="page-stat-item">
-              {i > 0 && <div className="page-stat-divider" />}
-              <span className="page-stat-value">{s.v}</span>
-              <span className="page-stat-label">{s.l}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
       <div className="page-body">
         <ScrollReveal>
           <div className="action-bar">

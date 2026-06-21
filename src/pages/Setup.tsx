@@ -28,8 +28,6 @@ export default function Setup() {
     updateDraft({ gameModeId: 'laabtna' })
   }, [])
 
-  const doneCount = READINESS.filter(r => r.check(draft)).length
-
   const handleStart = () => {
     const id = startGame()
     if (id) navigate('/play')
@@ -100,24 +98,6 @@ export default function Setup() {
               </span>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="page-stats-bar page-chrome">
-        <div className="page-stats-inner">
-          {[
-            { v: `${draft.team1Categories.length + draft.team2Categories.length}/٦`, l: 'الفئات المختارة' },
-            { v: '٣+٣', l: 'وسائل المساعدة' },
-            { v: `${doneCount}/٣`, l: 'خطوات مكتملة' },
-            { v: '٣٦', l: 'سؤال في اللعبة' },
-          ].map((s, i) => (
-            <div key={s.l} className="page-stat-item">
-              {i > 0 && <div className="page-stat-divider" />}
-              <span className={`page-stat-value ${s.v === '٣/٣' ? 'done' : ''}`}>{s.v}</span>
-              <span className="page-stat-label">{s.l}</span>
-            </div>
-          ))}
         </div>
       </section>
 

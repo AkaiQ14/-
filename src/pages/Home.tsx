@@ -81,24 +81,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── STATS ── */}
-      <section className="home-stats-bar page-chrome">
-        <div className="home-stats-inner">
-          {[
-            { v: String(GAME_MODES.length), l: 'ألعاب في المنصة' },
-            { v: 'مجاني', l: 'بدون اشتراك' },
-            { v: '٠', l: 'تسجيل مطلوب' },
-            { v: '💾', l: 'حفظ تلقائي' },
-          ].map((s, i) => (
-            <div key={s.l} className="home-stat-item">
-              {i > 0 && <div className="home-stat-divider" />}
-              <span className="home-stat-value">{s.v}</span>
-              <span className="home-stat-label">{s.l}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* ── GAMES ── */}
       <section className="home-games site-section section-wrap">
         <ScrollReveal>

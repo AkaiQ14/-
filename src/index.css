@@ -92,6 +92,8 @@
   --gradient-orange: linear-gradient(180deg, var(--orange-mid) 0%, var(--orange-primary) 100%);
 }
 
+/* Dark mode — full palette in styles/theme.css */
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
@@ -164,7 +166,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── Header ─── */
 .app-header {
-  background: var(--bg-white);
+  background: var(--chrome-bg);
   border: var(--brutal-border);
   border-radius: var(--r-md);
   margin: 0.85rem var(--page-gutter) 0;
@@ -217,8 +219,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 .app-footer {
-  background: var(--bg-white);
-  color: var(--text-body);
+  background: var(--chrome-bg);
+  color: var(--chrome-text);
   text-align: center;
   padding: 1.75rem 1.5rem;
   font-size: 0.88rem;

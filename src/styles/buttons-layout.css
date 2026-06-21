@@ -211,7 +211,7 @@ button.btn:disabled {
   display: inline-flex;
   padding: 4px;
   gap: 4px;
-  background: var(--bg-white);
+  background: var(--segment-bg);
   border: var(--brutal-border);
   border-radius: var(--r-sm);
   box-shadow: var(--brutal-shadow-sm);
@@ -237,7 +237,7 @@ button.btn:disabled {
 }
 
 .btn-segment .btn-segment-item:hover:not(.active) {
-  background: var(--bg-cream-light);
+  background: var(--segment-hover);
 }
 
 .btn-segment .btn-segment-item.active-t1,
@@ -272,7 +272,7 @@ button.btn:disabled {
   gap: 1rem;
   flex-wrap: wrap;
   padding: 0.85rem 1rem;
-  background: var(--bg-white);
+  background: var(--chrome-bg);
   border: var(--brutal-border);
   border-radius: var(--r-md);
   box-shadow: var(--brutal-shadow-sm);
@@ -311,15 +311,22 @@ button.btn:disabled {
   min-width: 0;
 }
 
+.nav-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-shrink: 0;
+}
+
 .nav-pills {
   display: inline-flex;
   align-items: center;
   gap: 4px;
   padding: 4px;
-  background: var(--bg-cream-light);
-  border: 2px solid var(--ink);
+  background: var(--nav-track-bg);
+  border: 2px solid var(--nav-track-border);
   border-radius: var(--r-sm);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  box-shadow: var(--nav-track-inset);
 }
 
 .nav-pill {
@@ -332,26 +339,26 @@ button.btn:disabled {
   border-radius: calc(var(--r-sm) - 2px);
   font-weight: 800;
   font-size: 0.86rem;
-  color: var(--text-body);
+  color: var(--nav-pill-text);
   border: 2px solid transparent;
   box-shadow: none;
   text-decoration: none;
   white-space: nowrap;
   flex-shrink: 0;
-  transition: transform var(--t), box-shadow var(--t), background var(--t);
+  transition: transform var(--t), box-shadow var(--t), background var(--t), color var(--t), border-color var(--t);
 }
 
 .nav-pill:hover {
-  background: var(--bg-white);
-  color: var(--blue-dark);
+  background: var(--nav-pill-hover-bg);
+  color: var(--nav-pill-text-hover);
   transform: none;
 }
 
 .nav-pill.active {
-  background: var(--blue-soft);
-  color: var(--blue-dark);
-  border-color: var(--blue-primary);
-  box-shadow: 2px 2px 0 var(--ink);
+  background: var(--nav-pill-active-bg);
+  color: var(--nav-pill-text-active);
+  border-color: var(--nav-pill-active-border);
+  box-shadow: var(--nav-pill-shadow);
   font-weight: var(--fw-semibold, 600);
 }
 
@@ -382,6 +389,11 @@ button.btn:disabled {
     width: 100%;
     justify-content: center;
     flex-wrap: wrap;
+  }
+
+  .nav-actions {
+    width: 100%;
+    justify-content: center;
   }
 
   .nav-pills {

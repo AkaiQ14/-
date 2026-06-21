@@ -104,7 +104,7 @@
   display: inline-block;
   font-size: 0.75rem;
   font-weight: var(--fw-semibold);
-  color: var(--blue-primary);
+  color: var(--mode-section-color, var(--blue-primary));
   margin-bottom: 0.35rem;
 }
 
@@ -118,7 +118,7 @@
 
 .game-mode-desc {
   font-size: 0.92rem;
-  color: var(--text-muted);
+  color: var(--mode-desc-color, var(--text-muted));
   line-height: 1.7;
   font-weight: 600;
   margin-bottom: 0.85rem;
@@ -135,10 +135,10 @@
 .game-mode-highlights li {
   font-size: 0.72rem;
   font-weight: var(--fw-semibold);
-  padding: 0.2rem 0.55rem;
-  background: var(--blue-soft);
-  color: var(--blue-dark);
-  border: 1.5px solid var(--ink);
+  padding: 0.28rem 0.65rem;
+  background: var(--tag-bg, var(--blue-soft));
+  color: var(--tag-text, var(--blue-dark));
+  border: 1.5px solid var(--tag-border, var(--ink));
   border-radius: var(--r-sm);
 }
 
@@ -173,5 +173,5 @@
 }
 
 .games-note strong {
-  color: var(--blue-dark);
+  color: var(--mode-note-strong, var(--blue-dark));
 }

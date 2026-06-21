@@ -1,5 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import DarkModeToggle from './DarkModeToggle'
 import SiteLogo from './SiteLogo'
 import { useGameStore } from '../store/gameStore'
 
@@ -18,20 +19,16 @@ export default function Layout({ children }: { children: ReactNode }) {
   }, [])
 
   useEffect(() => {
-    if (location.pathname.startsWith('/games/hidden-player')) {
-      window.scrollTo(0, 0)
-    }
+    window.scrollTo(0, 0)
   }, [location.pathname])
 
   if (immersivePlay) {
-    if (isHiddenPlay) {
-      return (
-        <div key={location.pathname} className="page-enter">
-          {children}
-        </div>
-      )
-    }
-    return <>{children}</>
+    return (
+      <>
+        <DarkModeToggle fixed />
+        {children}
+      </>
+    )
   }
 
   return (
@@ -53,11 +50,14 @@ export default function Layout({ children }: { children: ReactNode }) {
               ألعابي
             </Link>
           </div>
-          {!isPlay && (
-            <Link to="/games" className="btn btn-accent btn-nav btn-shimmer">
-              ▶ ابدأ اللعب
-            </Link>
-          )}
+          <div className="nav-actions">
+            <DarkModeToggle />
+            {!isPlay && (
+              <Link to="/games" className="btn btn-accent btn-nav btn-shimmer">
+                ▶ ابدأ اللعب
+              </Link>
+            )}
+          </div>
         </nav>
       </header>
 
