@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react'
 import { calcTeamStats, strongestPlayer } from '../../lib/auctionUtils'
 import type { PlayerId, PlayerProfile, SquadSlot } from '../../types/hiddenPlayer'
+import { enNum } from '../../lib/formatNumber'
 
 interface TeamComparisonProps {
   squad1: SquadSlot[]
@@ -48,11 +49,11 @@ export default function TeamComparison({
       <div className="hp-results-grid">
         <div className="hp-results-team" style={{ '--team-color': p1.color } as CSSProperties}>
           <h3>{p1.name}</h3>
-          {best1 && <p className="hp-best">أقوى بطاقة: {best1.futPosition} {best1.overall}</p>}
+          {best1 && <p className="hp-best">أقوى بطاقة: {best1.futPosition} {enNum(best1.overall)}</p>}
         </div>
         <div className="hp-results-team" style={{ '--team-color': p2.color } as CSSProperties}>
           <h3>{p2.name}</h3>
-          {best2 && <p className="hp-best">أقوى بطاقة: {best2.futPosition} {best2.overall}</p>}
+          {best2 && <p className="hp-best">أقوى بطاقة: {best2.futPosition} {enNum(best2.overall)}</p>}
         </div>
       </div>
 
@@ -69,13 +70,13 @@ export default function TeamComparison({
                   <div className="hp-bar-track">
                     <div className="hp-bar hp-bar--p1" style={{ width: `${(v1 / max) * 100}%` }} />
                   </div>
-                  <span>{v1}</span>
+                  <span>{enNum(v1)}</span>
                 </div>
                 <div className="hp-bar-wrap">
                   <div className="hp-bar-track">
                     <div className="hp-bar hp-bar--p2" style={{ width: `${(v2 / max) * 100}%` }} />
                   </div>
-                  <span>{v2}</span>
+                  <span>{enNum(v2)}</span>
                 </div>
               </div>
             </div>

@@ -145,7 +145,15 @@ function pickPair(
   usedIds.add(second.id)
   usedNames.add(second.name)
 
-  return [first, second]
+  const stronger = first.overall >= second.overall ? first : second
+  const weaker = first.overall >= second.overall ? second : first
+
+  // حظ عادل: 50% اللاعب الخفي أقوى — 50% اللاعب الظاهر في المزاد أقوى
+  const hiddenIsStronger = Math.random() < 0.5
+  if (hiddenIsStronger) {
+    return [weaker, stronger]
+  }
+  return [stronger, weaker]
 }
 
 /** يختار 5 جولات عشوائية — يتجنب تكرار الأسماء في المزاد ويفضّل بطاقات لم تُستخدم مؤخراً */

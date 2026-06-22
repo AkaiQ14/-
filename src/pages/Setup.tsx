@@ -5,11 +5,12 @@ import { LIFELINES } from '../types/game'
 import FloatingOrbs from '../components/FloatingOrbs'
 import LifelineIcon from '../components/LifelineIcon'
 import ScrollReveal from '../components/ScrollReveal'
+import { enNum } from '../lib/formatNumber'
 import './setup.css'
 
 const READINESS = [
-  { key: 'cat1', label: 'فئات الفريق ١', check: (d: ReturnType<typeof useGameStore.getState>['draft']) => d.team1Categories.length === 3 },
-  { key: 'cat2', label: 'فئات الفريق ٢', check: (d: ReturnType<typeof useGameStore.getState>['draft']) => d.team2Categories.length === 3 },
+  { key: 'cat1', label: 'فئات الفريق 1', check: (d: ReturnType<typeof useGameStore.getState>['draft']) => d.team1Categories.length === 3 },
+  { key: 'cat2', label: 'فئات الفريق 2', check: (d: ReturnType<typeof useGameStore.getState>['draft']) => d.team2Categories.length === 3 },
   { key: 'names', label: 'أسماء الفرق', check: (d: ReturnType<typeof useGameStore.getState>['draft']) => d.team1Name.trim().length > 0 && d.team2Name.trim().length > 0 },
 ] as const
 
@@ -78,7 +79,7 @@ export default function Setup() {
             <span className="text-gradient">إنشاء لعبة جديدة</span>
           </h1>
           <p className="page-lead">
-            ٣ فئات لكل فريق • ٣ وسائل مساعدة ثابتة • ٣٦ سؤال
+            3 فئات لكل فريق • 3 وسائل مساعدة ثابتة • 36 سؤال
           </p>
           <p className="setup-back-link-wrap">
             <Link to="/games" className="setup-back-link">← العودة لقسم الألعاب</Link>
@@ -86,9 +87,9 @@ export default function Setup() {
 
           <div className="page-step-track">
             {[
-              { n: '١', label: 'الفئات', done: draft.team1Categories.length === 3 && draft.team2Categories.length === 3 },
-              { n: '٢', label: 'الفرق', done: draft.team1Name.trim() && draft.team2Name.trim() },
-              { n: '٣', label: 'التقسيم', done: !!splitResult },
+              { n: '1', label: 'الفئات', done: draft.team1Categories.length === 3 && draft.team2Categories.length === 3 },
+              { n: '2', label: 'الفرق', done: draft.team1Name.trim() && draft.team2Name.trim() },
+              { n: '3', label: 'التقسيم', done: !!splitResult },
             ].map((step, i, arr) => (
               <span key={step.n} style={{ display: 'contents' }}>
                 <div className={`page-step-track-item ${step.done ? 'done' : i === 0 || arr[i - 1]?.done ? 'active' : ''}`}>
@@ -108,10 +109,10 @@ export default function Setup() {
         <ScrollReveal>
           <div className="page-section">
             <div className="page-section-head">
-              <div className="page-section-num">١</div>
+              <div className="page-section-num">1</div>
               <div className="page-section-info">
                 <h2>اختر الفئات</h2>
-                <p>٣ فئات لكل فريق — بدون تداخل بين الفريقين</p>
+                <p>3 فئات لكل فريق — بدون تداخل بين الفريقين</p>
               </div>
             </div>
 
@@ -123,14 +124,14 @@ export default function Setup() {
                     className={`btn-segment-item ${activeTeam === 'team1' ? 'active-t1' : ''}`}
                     onClick={() => setActiveTeam('team1')}
                   >
-                    الفريق ١ ({draft.team1Categories.length}/٣)
+                    الفريق 1 ({enNum(draft.team1Categories.length)}/3)
                   </button>
                   <button
                     type="button"
                     className={`btn-segment-item ${activeTeam === 'team2' ? 'active-t2' : ''}`}
                     onClick={() => setActiveTeam('team2')}
                   >
-                    الفريق ٢ ({draft.team2Categories.length}/٣)
+                    الفريق 2 ({enNum(draft.team2Categories.length)}/3)
                   </button>
                 </div>
               </div>
@@ -177,7 +178,7 @@ export default function Setup() {
         <ScrollReveal delay={80}>
           <div className="page-section">
             <div className="page-section-head">
-              <div className="page-section-num">٢</div>
+              <div className="page-section-num">2</div>
               <div className="page-section-info">
                 <h2>معلومات الفرق</h2>
                 <p>اسم كل فريق — وسائل المساعدة ثابتة لجميع الفرق</p>
@@ -186,7 +187,7 @@ export default function Setup() {
 
             <div className="setup-lifelines-shared">
               <div className="setup-lifeline-header">
-                <span className="setup-lifeline-label">وسائل المساعدة (٣ لكل فريق)</span>
+                <span className="setup-lifeline-label">وسائل المساعدة (3 لكل فريق)</span>
               </div>
               {renderLifelines()}
             </div>
@@ -204,7 +205,7 @@ export default function Setup() {
                       <h3>{label}</h3>
                     </div>
                     <input
-                      className="setup-team-input"
+                      className="setup-team-input en-num-input"
                       placeholder={`اسم ${label}`}
                       value={draft[nameKey]}
                       onChange={e => updateDraft({ [nameKey]: e.target.value } as Partial<typeof draft>)}
@@ -220,7 +221,7 @@ export default function Setup() {
         <ScrollReveal delay={160}>
           <div className="page-section">
             <div className="page-section-head">
-              <div className="page-section-num">٣</div>
+              <div className="page-section-num">3</div>
               <div className="page-section-info">
                 <h2>قسّم اللاعبين</h2>
                 <p>اختياري — أدخل العدد الكلي للتقسيمة العادلة</p>
@@ -231,7 +232,7 @@ export default function Setup() {
                 <label style={{ fontWeight: 700, color: 'var(--text-body)' }}>عدد اللاعبين</label>
                 <input
                   type="number"
-                  className="setup-splitter-input"
+                  className="setup-splitter-input en-num-input"
                   min={2}
                   max={30}
                   value={playerCount}
@@ -253,10 +254,10 @@ export default function Setup() {
                   <p style={{ fontWeight: 700, color: 'var(--text-muted)' }}>التقسيمة المقترحة</p>
                   <div className="setup-split-teams">
                     <div className="setup-split-team t1">
-                      {draft.team1Name || 'الفريق ١'}: {splitResult.t1} لاعب
+                      {draft.team1Name || 'الفريق 1'}: {enNum(splitResult.t1)} لاعب
                     </div>
                     <div className="setup-split-team t2">
-                      {draft.team2Name || 'الفريق ٢'}: {splitResult.t2} لاعب
+                      {draft.team2Name || 'الفريق 2'}: {enNum(splitResult.t2)} لاعب
                     </div>
                   </div>
                 </div>

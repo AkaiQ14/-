@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { minAllowedBid } from '../../lib/auctionUtils'
+import { enNum } from '../../lib/formatNumber'
 import type { BidRecord, PlayerId } from '../../types/hiddenPlayer'
 
 interface BidPanelProps {
@@ -58,14 +59,14 @@ export default function BidPanel({
   }
 
   const leaderHint = highBidder
-    ? `المتصدر: ${highBidder === 'p1' ? p1Name : p2Name} — التالي ${minBid}M+`
+    ? `المتصدر: ${highBidder === 'p1' ? p1Name : p2Name} — التالي ${enNum(minBid)}M+`
     : 'أي مبلغ من 1M'
 
   return (
     <div className="hp-bid-panel">
       <div className="hp-bid-head__amount">
         <span className="hp-bid-label">المزايدة الحالية</span>
-        <strong>{highBidder ? `${currentBid}M` : '0M'}</strong>
+        <strong>{highBidder ? `${enNum(currentBid)}M` : '0M'}</strong>
       </div>
       <p className="hp-bid-leader">{leaderHint}</p>
 
@@ -74,11 +75,11 @@ export default function BidPanel({
       <div className="hp-bid-players">
         <div className="hp-bid-player hp-bid-player--active">
           <span className="hp-bid-player__name">{activeName}</span>
-          <span className="hp-bid-player__meta">{activeBudget}M · دورك</span>
+          <span className="hp-bid-player__meta">{enNum(activeBudget)}M · دورك</span>
         </div>
         <div className="hp-bid-player hp-bid-player--wait">
           <span className="hp-bid-player__name">{waitingName}</span>
-          <span className="hp-bid-player__meta">{waitingBudget}M · ينتظر</span>
+          <span className="hp-bid-player__meta">{enNum(waitingBudget)}M · ينتظر</span>
         </div>
       </div>
 
@@ -91,8 +92,9 @@ export default function BidPanel({
             max={activeBudget}
             step={1}
             value={customBid}
-            aria-label={`مبلغ المزايدة من ${minBid}M إلى ${activeBudget}M`}
-            title={`من ${minBid}M إلى ${activeBudget}M`}
+            className="en-num-input"
+            aria-label={`مبلغ المزايدة من ${enNum(minBid)}M إلى ${enNum(activeBudget)}M`}
+            title={`من ${enNum(minBid)}M إلى ${enNum(activeBudget)}M`}
             onChange={e => setCustomBid(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && submitCustomBid()}
           />
@@ -111,7 +113,7 @@ export default function BidPanel({
           {[...bidHistory].reverse().slice(0, 2).map((b, i) => (
             <li key={`${b.round}-${b.playerId}-${b.action}-${i}`}>
               {b.playerId === 'p1' ? p1Name : p2Name}
-              {b.action === 'bid' ? ` ${b.amount}M` : ' انسحاب'}
+              {b.action === 'bid' ? ` ${enNum(b.amount)}M` : ' انسحاب'}
             </li>
           ))}
         </ul>

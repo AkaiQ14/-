@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import DarkModeToggle from './DarkModeToggle'
 import SiteLogo from './SiteLogo'
 import { useGameStore } from '../store/gameStore'
+import { enNum } from '../lib/formatNumber'
 
 export default function Layout({ children }: { children: ReactNode }) {
   const location = useLocation()
@@ -74,7 +75,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         </span>
         {' '}— منصة ألعاب جماعية تجمع المتعة والمنافسة والمعرفة
         <br />
-        © {new Date().getFullYear()} جميع الحقوق محفوظة
+        © {enNum(new Date().getFullYear())} جميع الحقوق محفوظة
       </footer>
     </div>
   )

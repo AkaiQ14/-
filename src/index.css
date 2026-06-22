@@ -101,6 +101,7 @@ html {
   direction: rtl;
   font-family: var(--font);
   font-size: 106.25%;
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 body {

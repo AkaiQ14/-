@@ -3,6 +3,7 @@ import { cellKey } from '../types/game'
 import type { GameState } from '../types/game'
 import { BOARD_POINT_TIERS } from '../types/boardLayout'
 import type { BoardSide } from '../types/boardLayout'
+import { enNum } from '../lib/formatNumber'
 
 interface PlayBoardProps {
   game: GameState
@@ -32,7 +33,7 @@ function PointButton({
       disabled={done}
       onClick={onSelect}
     >
-      {noWinner ? '✕' : done ? '✓' : label}
+      {noWinner ? '✕' : done ? '✓' : enNum(label)}
     </button>
   )
 }

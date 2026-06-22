@@ -6,12 +6,12 @@ export default function HeroBoardPreview() {
     <div className="board-preview">
       <div className="board-preview-header">
         <div className="board-preview-team t1">
-          <span className="bp-team-name">الفريق ١</span>
+          <span className="bp-team-name">الفريق 1</span>
           <span className="bp-team-score">1200</span>
         </div>
         <div className="board-preview-vs">VS</div>
         <div className="board-preview-team t2">
-          <span className="bp-team-name">الفريق ٢</span>
+          <span className="bp-team-name">الفريق 2</span>
           <span className="bp-team-score">900</span>
         </div>
       </div>

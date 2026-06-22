@@ -4,6 +4,7 @@ import { useGameStore } from '../store/gameStore'
 import { TOTAL_QUESTIONS } from '../types/game'
 import FloatingOrbs from '../components/FloatingOrbs'
 import ScrollReveal from '../components/ScrollReveal'
+import { enNum, formatDateTime } from '../lib/formatNumber'
 import './mygames.css'
 
 type Filter = 'all' | 'active' | 'finished'
@@ -26,12 +27,6 @@ export default function MyGames() {
     resumeGame(id)
     navigate('/play')
   }
-
-  const formatDate = (ts: number) =>
-    new Date(ts).toLocaleDateString('ar-KW', {
-      month: 'short', day: 'numeric',
-      hour: '2-digit', minute: '2-digit',
-    })
 
   if (savedGames.length === 0) {
     return (
@@ -69,7 +64,7 @@ export default function MyGames() {
             <span className="text-gradient">ألعابي</span>
           </h1>
           <p className="page-lead">
-            {savedGames.length} لعبة محفوظة — استرجع أي لعبة أو تابع من حيث توقفت
+            {enNum(savedGames.length)} لعبة محفوظة — استرجع أي لعبة أو تابع من حيث توقفت
           </p>
         </div>
       </section>
@@ -80,9 +75,9 @@ export default function MyGames() {
             <div className="action-bar__start">
               <div className="btn-segment" role="tablist" aria-label="تصفية الألعاب">
                 {([
-                  ['all', `الكل (${savedGames.length})`],
-                  ['active', `جارية (${activeCount})`],
-                  ['finished', `منتهية (${finishedCount})`],
+                  ['all', `الكل (${enNum(savedGames.length)})`],
+                  ['active', `جارية (${enNum(activeCount)})`],
+                  ['finished', `منتهية (${enNum(finishedCount)})`],
                 ] as [Filter, string][]).map(([key, label]) => (
                   <button
                     key={key}
@@ -128,16 +123,16 @@ export default function MyGames() {
                         <span className={`mygame-chip ${game.status === 'finished' ? 'finished' : 'active'}`}>
                           {game.status === 'finished' ? 'منتهية' : 'جارية'}
                         </span>
-                        <span className="mygame-chip">{game.answeredCount}/{TOTAL_QUESTIONS} سؤال</span>
-                        <span className="mygame-chip">{formatDate(game.createdAt)}</span>
+                        <span className="mygame-chip">{enNum(game.answeredCount)}/{enNum(TOTAL_QUESTIONS)} سؤال</span>
+                        <span className="mygame-chip">{formatDateTime(game.createdAt)}</span>
                       </div>
                     </div>
                   </div>
 
                   <div className="mygame-scores">
-                    <span>{game.team1.score} نقطة</span>
+                    <span>{enNum(game.team1.score)} نقطة</span>
                     <span style={{ color: 'var(--text-light)' }}>—</span>
-                    <span>{game.team2.score} نقطة</span>
+                    <span>{enNum(game.team2.score)} نقطة</span>
                   </div>
 
                   <div className="mygame-progress">

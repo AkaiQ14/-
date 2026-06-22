@@ -1,5 +1,6 @@
 import PlayerCard from './PlayerCard'
 import type { PlayerProfile, RevealData } from '../../types/hiddenPlayer'
+import { enNum } from '../../lib/formatNumber'
 
 interface RevealOverlayProps {
   reveal: RevealData
@@ -19,7 +20,7 @@ export default function RevealOverlay({ reveal, p1, p2, onContinue, isFinal }: R
         <span className="hp-reveal-tag">🎭 اللاعب الخفي</span>
         <h2>انتهت الجولة!</h2>
         <p className="hp-reveal-summary">
-          <strong>{winnerName}</strong> فاز بالبطاقة الظاهرة مقابل {reveal.amount}M
+          <strong>{winnerName}</strong> فاز بالبطاقة الظاهرة مقابل {enNum(reveal.amount)}M
         </p>
 
         <div className="hp-reveal-cards">

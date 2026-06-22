@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react'
 import PlayerCard from './PlayerCard'
 import type { PlayerProfile, SquadSlot } from '../../types/hiddenPlayer'
+import { enNum } from '../../lib/formatNumber'
 
 interface SquadPanelProps {
   profile: PlayerProfile
@@ -19,7 +20,7 @@ export default function SquadPanel({ profile, slots, side, active }: SquadPanelP
         <span className="hp-squad-dot" style={{ background: profile.color }} />
         <div>
           <h3>{profile.name}</h3>
-          <p>{profile.budget}M متبقي</p>
+          <p>{enNum(profile.budget)}M متبقي</p>
         </div>
       </header>
       <ul className="hp-squad-list">
@@ -29,7 +30,7 @@ export default function SquadPanel({ profile, slots, side, active }: SquadPanelP
             {slot.player ? (
               <div className="hp-slot-player">
                 <PlayerCard footballer={slot.player} variant="compact" />
-                <span className="hp-slot-ovr">{slot.player.overall}</span>
+                <span className="hp-slot-ovr">{enNum(slot.player.overall)}</span>
                 {slot.wasHidden && <span className="hp-slot-tag">خفي</span>}
               </div>
             ) : (

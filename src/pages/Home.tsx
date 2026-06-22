@@ -27,9 +27,9 @@ const PLATFORM_FEATURES = [
 ]
 
 const HOW_IT_WORKS = [
-  { num: '١', icon: '🎯', text: 'اختر اللعبة من قسم الألعاب' },
-  { num: '٢', icon: '⚙️', text: 'جهّز الفرق والإعدادات' },
-  { num: '٣', icon: '🏆', text: 'العب واجمع النقاط' },
+  { num: '1', icon: '🎯', text: 'اختر اللعبة من قسم الألعاب' },
+  { num: '2', icon: '⚙️', text: 'جهّز الفرق والإعدادات' },
+  { num: '3', icon: '🏆', text: 'العب واجمع النقاط' },
 ]
 
 export default function Home() {

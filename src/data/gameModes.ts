@@ -10,7 +10,7 @@ export const GAME_MODES: GameMode[] = [
     icon: '🎮',
     available: true,
     setupPath: '/games/laabtna/setup',
-    highlights: ['٦ فئات • ٣٦ سؤال', 'فريقان', '٣ وسائل مساعدة'],
+    highlights: ['6 فئات • 36 سؤال', 'فريقان', '3 وسائل مساعدة'],
   },
   {
     id: 'hidden-player',

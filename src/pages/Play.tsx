@@ -8,12 +8,13 @@ import type { BoardSide } from '../types/boardLayout'
 import PlayBoard from '../components/PlayBoard'
 import LifelineIcon from '../components/LifelineIcon'
 import SiteLogo from '../components/SiteLogo'
+import { enNum } from '../lib/formatNumber'
 import './play.css'
 
 function formatElapsed(totalSeconds: number): string {
   const minutes = Math.floor(totalSeconds / 60)
   const seconds = totalSeconds % 60
-  return `${minutes}:${String(seconds).padStart(2, '0')}`
+  return `${enNum(minutes)}:${String(seconds).padStart(2, '0')}`
 }
 
 export default function Play() {
@@ -109,12 +110,12 @@ export default function Play() {
           <div className="sj-end-scores">
             <div className={`sj-end-card ${game.team1.score >= game.team2.score && winner ? 'winner' : ''}`}>
               <span className="sj-end-name">{game.team1.name}</span>
-              <span className="sj-end-pts">{game.team1.score}</span>
+              <span className="sj-end-pts">{enNum(game.team1.score)}</span>
             </div>
             <span className="sj-end-vs">vs</span>
             <div className={`sj-end-card ${game.team2.score > game.team1.score ? 'winner' : ''}`}>
               <span className="sj-end-name">{game.team2.name}</span>
-              <span className="sj-end-pts">{game.team2.score}</span>
+              <span className="sj-end-pts">{enNum(game.team2.score)}</span>
             </div>
           </div>
           <div className="sj-end-actions">
@@ -202,7 +203,7 @@ export default function Play() {
           <div className="sj-team-name">{game.team1.name}</div>
           <div className="sj-score-row">
             <button type="button" className="sj-score-btn" onClick={() => adjustScore('team1', -1)}>−</button>
-            <span className="sj-score-value">{game.team1.score}</span>
+            <span className="sj-score-value">{enNum(game.team1.score)}</span>
             <button type="button" className="sj-score-btn" onClick={() => adjustScore('team1', 1)}>+</button>
           </div>
         </div>
@@ -237,7 +238,7 @@ export default function Play() {
           <div className="sj-team-name">{game.team2.name}</div>
           <div className="sj-score-row">
             <button type="button" className="sj-score-btn" onClick={() => adjustScore('team2', -1)}>−</button>
-            <span className="sj-score-value">{game.team2.score}</span>
+            <span className="sj-score-value">{enNum(game.team2.score)}</span>
             <button type="button" className="sj-score-btn" onClick={() => adjustScore('team2', 1)}>+</button>
           </div>
         </div>
@@ -276,11 +277,13 @@ export default function Play() {
                   </button>
                 </div>
               </div>
-              <span className="sj-modal-points">{activeQuestion.points} نقطة</span>
+              <span className="sj-modal-points">{enNum(activeQuestion.points)} نقطة</span>
             </div>
 
             {game.activeLifeline?.pitActive && (
-              <div className="sj-warning pit">🕳️ الحفرة — جاوب صح وانقص نقاط خصمك</div>
+              <div className="sj-warning pit">
+                <LifelineIcon lifeline={getLifeline('the-pit')} /> الحفرة — جاوب صح وانقص نقاط خصمك
+              </div>
             )}
             {game.activeLifeline?.doublePointsActive && (
               <div className="sj-warning gold">✖️ مضاعفة النقاط — نقاطك تتضاعف!</div>
@@ -300,7 +303,7 @@ export default function Play() {
 
                 {(timerLifeline === 'call-friend' || timerLifeline === 'search') && (
                   <div className="sj-timer">
-                    <div className="sj-timer-num">{lifelineCountdown}</div>
+                    <div className="sj-timer-num">{enNum(lifelineCountdown)}</div>
                     <div className="sj-timer-label">
                       {timerLifeline === 'search' ? 'ثانية للبحث' : 'ثانية للاتصال'}
                     </div>

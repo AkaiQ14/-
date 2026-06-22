@@ -1,4 +1,5 @@
 import type { Footballer } from '../../types/hiddenPlayer'
+import { enNum } from '../../lib/formatNumber'
 
 interface PlayerCardProps {
   footballer: Footballer
@@ -29,7 +30,7 @@ export default function PlayerCard({ footballer, variant = 'visible', highlight 
       </a>
       <div className="hp-fut-card-info">
         <span className="hp-fut-pos">{footballer.futPosition}</span>
-        <strong>{footballer.overall}</strong>
+        <strong>{enNum(footballer.overall)}</strong>
         {footballer.nation && <span>{footballer.nation}</span>}
         {footballer.club && <span>{footballer.club}</span>}
       </div>

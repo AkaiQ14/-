@@ -7,6 +7,7 @@ import {
   STARTING_BUDGET,
 } from '../data/auctionPlayers'
 import { useAuctionStore } from '../store/auctionStore'
+import { enNum } from '../lib/formatNumber'
 import type { GameMode } from '../types/hiddenPlayer'
 
 export default function HiddenPlayerLobby() {
@@ -129,7 +130,7 @@ export default function HiddenPlayerLobby() {
 
         <section className="hp-budget-setup">
           <h3>ميزانية المزاد لكل لاعب</h3>
-          <p>المبلغ الحالي: <strong>{startingBudget}M</strong></p>
+          <p>المبلغ الحالي: <strong>{enNum(startingBudget)}M</strong></p>
           <div className="hp-budget-presets">
             {BUDGET_PRESETS.map(amount => (
               <button
@@ -138,7 +139,7 @@ export default function HiddenPlayerLobby() {
                 className={`btn btn-sm ${startingBudget === amount ? 'btn-primary' : 'btn-secondary'}`}
                 onClick={() => handleBudgetPreset(amount)}
               >
-                {amount}M
+                {enNum(amount)}M
               </button>
             ))}
           </div>
@@ -147,6 +148,7 @@ export default function HiddenPlayerLobby() {
               مبلغ مخصص (50–999)
               <input
                 type="number"
+                className="en-num-input"
                 min={50}
                 max={999}
                 placeholder="مثال: 300"

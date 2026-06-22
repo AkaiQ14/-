@@ -115,6 +115,7 @@ export const LIFELINES: Lifeline[] = [
     description: 'جاوب صح وانقص نقاط خصمك',
     timing: 'before',
     icon: '🕳️',
+    image: '/images/up-down.png',
   },
   {
     id: 'double-points',

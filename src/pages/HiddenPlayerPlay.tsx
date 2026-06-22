@@ -6,6 +6,7 @@ import RevealOverlay from '../components/hidden-player/RevealOverlay'
 import SquadPanel from '../components/hidden-player/SquadPanel'
 import TeamComparison from '../components/hidden-player/TeamComparison'
 import { useAuctionStore } from '../store/auctionStore'
+import { enNum } from '../lib/formatNumber'
 
 export default function HiddenPlayerPlay() {
   const navigate = useNavigate()
@@ -35,7 +36,7 @@ export default function HiddenPlayerPlay() {
           <h1>اللاعب الخفي</h1>
           {showRoundInfo && round && (
             <p>
-              الجولة {Math.min(game.currentRound + 1, game.rounds.length)}/{game.rounds.length}
+              الجولة {enNum(Math.min(game.currentRound + 1, game.rounds.length))}/{enNum(game.rounds.length)}
               {' — '}{round.roundLabel}
               {game.phase === 'reveal' && ' — كشف اللاعب الخفي'}
             </p>
