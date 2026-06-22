@@ -6,6 +6,7 @@ export interface GameMode {
   sectionLabel: string
   description: string
   icon: string
+  image?: string
   available: boolean
   setupPath?: string
   comingSoonLabel?: string

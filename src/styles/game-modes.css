@@ -81,6 +81,20 @@
   line-height: 1;
 }
 
+.game-mode-icon-img {
+  width: 7.5rem;
+  height: 7.5rem;
+  object-fit: contain;
+  display: block;
+  border-radius: 1rem;
+}
+
+.game-mode-card--compact .game-mode-icon-img {
+  width: 5.75rem;
+  height: 5.75rem;
+  border-radius: 0.85rem;
+}
+
 .game-mode-badge {
   display: inline-flex;
   align-items: center;

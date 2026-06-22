@@ -12,7 +12,16 @@ export default function GameModeCard({ mode, compact = false }: GameModeCardProp
       className={`game-mode-card ${mode.available ? 'game-mode-card--available' : 'game-mode-card--soon'} ${compact ? 'game-mode-card--compact' : ''}`}
     >
       <div className="game-mode-card-top">
-        <span className="game-mode-icon" aria-hidden="true">{mode.icon}</span>
+        {mode.image ? (
+          <img
+            src={mode.image}
+            alt=""
+            className="game-mode-icon game-mode-icon-img"
+            aria-hidden="true"
+          />
+        ) : (
+          <span className="game-mode-icon" aria-hidden="true">{mode.icon}</span>
+        )}
         {!mode.available && mode.comingSoonLabel && (
           <span className="game-mode-badge">{mode.comingSoonLabel}</span>
         )}
